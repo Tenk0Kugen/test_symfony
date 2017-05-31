@@ -5,6 +5,7 @@ namespace AppBundle\Controller;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Symfony\Component\HttpFoundation\Request;
+use AppBundle\Repository;
 
 class DefaultController extends Controller
 {
@@ -13,9 +14,13 @@ class DefaultController extends Controller
      */
     public function indexAction(Request $request)
     {
-        // replace this example code with whatever you need
-        return $this->render('default/index.html.twig', array(
-            'base_dir' => realpath($this->container->getParameter('kernel.root_dir').'/..').DIRECTORY_SEPARATOR,
-        ));
+		$doct = $this->getDoctrine();
+		$categoryRepo = $doct->getRepository('AppBundle:Category');
+		$productRepo = $doct->getRepository('AppBundle:Product');
+		
+        return $this->render('AppBundle:Default:default.html.twig', array(
+			'products' => $productRepo->findAll(),
+			'categories' => $categoryRepo->findAll()
+		));
     }
 }
