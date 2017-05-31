@@ -4,9 +4,7 @@
 		<title>Продукт {{ product.name | default('not found') }}</title>
 		<meta charset="UTF-8">
 		<meta http-equiv="X-UA-Compatible" content="IE=edge">
-		<style>
-			h1 {text-align: center; font-family: GothicI; font-size: 30px;}
-		</style>
+		<link rel="stylesheet" href="{{ asset('bundles/app/css/main.css') }}">
 	</head>
 	<body>
 		<h1>Продукт {{ product.name | default('not found') }}</h1>
